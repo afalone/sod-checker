@@ -1,0 +1,8 @@
+.request
+ = form_for :query, :remote => true do |f|
+  = f.label :what, "Запрос"
+  = f.select :what, options_from_collection_for_select(@config["methods"].to_a, :first, :first)
+:javascript
+ jQuery(document).ready(function(){
+  jQuery(".request < form select#query_what").change(function(){"alert \"ch\"";});
+ });

@@ -1,4 +1,15 @@
 SodChecker::Application.routes.draw do
+  resources :main do
+   collection do
+    get "index"
+    get "search"
+   end
+   member do
+    get "show"
+   end
+  end
+  root :to => "main#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
