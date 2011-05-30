@@ -13,7 +13,7 @@ class MainController < ApplicationController
 
  protected
   def get_config
-   @config = File.open('config/ax.yml'){|f| YAML.load(f)}
+   @config = File.open('config/ax.yaml'){|f| YAML.load(f)}
   end
 
   def get_query

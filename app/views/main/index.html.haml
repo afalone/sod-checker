@@ -1,8 +1,8 @@
 .request
- = form_for :query, :remote => true do |f|
+ = form_for :query, :url => root_path, :html=>{:method => :get}, :remote => true do |f|
   = f.label :what, "Запрос"
-  = f.select :what, options_from_collection_for_select(@config["methods"].to_a, :first, :first)
-:javascript
- jQuery(document).ready(function(){
-  jQuery(".request < form select#query_what").change(function(){"alert \"ch\"";});
- });
+  = f.select :what, options_from_collection_for_select(@config["methods"].to_a, :first, :first, @query.what)
+  = f.submit "Задать параметры"
+.rparams
+ = if @query && !@query.what.blank?
+  - render :partial => "query_params", :locals => {:query => @query, :config => @config}

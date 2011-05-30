@@ -37,6 +37,7 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "client_side_validations"
 gem "cells"
+gem "rspec-cells"
 
 group :development, :test do
  gem "rspec"
