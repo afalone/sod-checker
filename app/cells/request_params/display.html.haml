@@ -1,9 +1,9 @@
 = @method
 .select
- = form_for :fields, :url => root_path do |form|
+ = @form.fields_for :fields, @data do |form|
+  = form.hidden_field "_request_method"
   - @input.each_pair do |key, val|
    .form_line
-    #{key}
-    -# if val["type"] == "string"
-    = render_cell :"request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form
-    =# val["type"]
+    = form.label key, "#{val["title"] || val["description"]} (#{key})"
+    = render_cell :"request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key)
+  = form.submit "отправить запрос"

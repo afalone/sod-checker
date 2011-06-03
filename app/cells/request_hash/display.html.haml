@@ -1,4 +1,12 @@
-%h1
-  RequestHash#display
-%p
-  Find me in app/cells/request_hash/display.html.haml
+= @form.fields_for @key do |f|
+ %dl
+  -# @val["content"].each_key do |k|
+  - @val.each_pair do |k, v|
+   %dt #{v["title"]} (#{k})
+   %dd= render_cell :"request_#{v["type"] || "string"}", :display, :form => f, :config => v, :input => v
+-#  - @input.each do |row|
+-#   %tr
+-#    - @val["content"].each_key do |k|
+-#     %td
+-#      = row[k]
+

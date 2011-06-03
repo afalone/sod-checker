@@ -33,6 +33,7 @@ gem 'pg'
 
 gem "json"
 gem "haml"
+gem "sass"
 gem "haml-rails"
 gem "jquery-rails"
 gem "client_side_validations"

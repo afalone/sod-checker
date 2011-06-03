@@ -1,0 +1,6 @@
+%dl
+ - @config["content"].delete_if{|k, v| k == "title" }.each_pair do |key, val|
+  %dt
+   #{val["title"]}
+  %dd
+   = render_cell "report_#{(@enums.keys.include?(val["type"]) ? "enum" : val["type"]) || "string"}", :display_data, :enums => @enums, :data => @data[key], :config => val

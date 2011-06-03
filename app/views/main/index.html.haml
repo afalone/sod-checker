@@ -1,8 +1,23 @@
-.request
- = form_for :query, :url => root_path, :html=>{:method => :get}, :remote => true do |f|
+- unless flash[:error].blank?
+ .error_message
+  = flash[:error]
+= form_for :query, :url => root_path, :html=>{:method => :get} do |f|
+ .request
   = f.label :what, "Запрос"
-  = f.select :what, options_from_collection_for_select(@config["methods"].to_a, :first, :first, @query.what)
-  = f.submit "Задать параметры"
-.rparams
- = if @query && !@query.what.blank?
-  - render :partial => "query_params", :locals => {:query => @query, :config => @config}
+  = f.select :what, @config["methods"].map{|arr| ["#{(arr[1]["title"] || arr[1]["description"])} (#{arr[0]})", arr[0]] }
+  = f.submit "Задать параметры", :name => "setup"
+ .rparams
+  - if @query && !@query.what.blank?
+   = render "query_params", :query => @query, :config => @config, :form => f
+.report
+ - if @report
+  = render_cell :report, :display, :data => @report, :config => @config["methods"][@query.what]["output"], :enums => @config["enums"]
+  %a#toggle_raw{:href=>"#"} Показать неформатированный ответ сервера
+  %pre#raw
+   = @report.to_yaml
+:javascript
+ $(document).ready(function(){
+  $("select#query_what").change(function(){ $(".rparams").hide(); });
+  $("#raw").hide();
+  $("#toggle_raw").click( function(){ $("#raw").toggle(); return false; });
+ });

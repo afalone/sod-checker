@@ -1,0 +1,2 @@
+- @config.each_pair do |key, val|
+ = render_cell :report_item, :display, :config => val, :data => @data[key], :key => key, :enums => @enums

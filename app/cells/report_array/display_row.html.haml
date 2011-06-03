@@ -1,0 +1,3 @@
+- @order.each do |column|
+ %td
+  = render_cell "report_item", :display_data, :config => @config[column], :data => @row[column], :enums => @enums
