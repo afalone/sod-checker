@@ -5,8 +5,8 @@ class MainController < ApplicationController
 
   def index
    puts "config load time: #{@c_time}"
-   @request = @query.fields.to_yaml if @query && @query.fields
-   if params["commit"] && @query.what == @query.fields._request_method
+   @request = @data.to_yaml if @data
+   if params["commit"] && @query.what == @data._request_method
     begin
      @r_time = Benchmark.ms do
       puts "query"
@@ -45,15 +45,7 @@ class MainController < ApplicationController
   def get_fields
    @query.fields = OpenStruct.new("_request_method" => @query.what) if params["setup"]
    @query.fields ||= OpenStruct.new("_request_method" => @query.what) if @query
+   @data = @query.fields if @query
   end
 
-  #def mk_struct(fields)
-  # if fields.is_a? Hash
-  #  return OpenStruct.new fields.inject({}){|r, a| r.merge({a[0] => mk_struct(a[1])}) }
-  # end
-  # if fields.is_a? Array
-  #  return fields.map{|v| mk_struct(v) }
-  # end
-  # fields
-  #end
 end

@@ -9,7 +9,13 @@
     %span.description= val["description"]
    .form_line
     = form.label key, lable
-    - @data.try("#{key}=", mk_struct(self.controller.try("data_#{val["type"] || "string"}")))
+    - puts "data"
+    - p @data
+    - p val["default"]
+    - p val["type"]
+    - @data.try("#{key}=", mk_struct(try("data_#{val["type"] || "string"}", @data.try(key))))
     - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
+    - p @data
+    - puts "/data"
     = render_cell :"request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key)
   = form.submit "отправить запрос"

@@ -5,7 +5,6 @@ class RequestStringCell < Cell::Rails
    @data = args[:data]
    @key = args[:key]
    @val = args[:val]
-   #@fields = args[:fields]
    render
   end
 

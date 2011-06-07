@@ -8,7 +8,9 @@
   = f.submit "Задать параметры", :name => "setup"
  .rparams
   - if @query && !@query.what.blank?
-   = render "query_params", :query => @query, :config => @config, :form => f
+   - puts "main data"
+   - p @data
+   = render "query_params", :query => @query, :config => @config, :form => f, :data => @data
 .report
  - if @report
   .stats{:title=>"статистика"}

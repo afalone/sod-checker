@@ -1,4 +1,4 @@
-= @form.fields_for @key, @data, :index => nil do |f|
+= @form.fields_for "#{@key}[]", @data, :index => nil do |f|
  %table
   %tr
    - @val.each_key do |k|
@@ -7,8 +7,6 @@
      %span.code #{k}
      %span.description #{@val[k]["description"]}
    %th= link_to "add", "#", :class => "add_row", :id => "#{@key}_js_id"
-  - puts "data array #{@key}"
-  - p @data
   - (@data || []).compact.each do |data|
    %tr
     = render_cell "request_params", :display_row, :form => f, :config => @val, :input => @val, :data => data

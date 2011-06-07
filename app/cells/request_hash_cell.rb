@@ -6,7 +6,6 @@ class RequestHashCell < Cell::Rails
    @val = args[:val].try(:"[]", "content")
    @input = args[:input] || {}
    @data = args[:data] || OpenStruct.new
-   #@input = input["content"] || {}
    render
   end
 
