@@ -10,13 +10,22 @@
  #border-spacing: 2px
  #border-color: gray
 
-.form_line > table td
+@mixin table-lines
  border: 1px solid gray
  border-collapse: collapse
+ 
+
+.form_line > table td
+ @include table-lines
 
 .form_line > table th
- border: 1px solid gray
- border-collapse: collapse
+ @include table-lines
+
+.report table td
+ @include table-lines
+
+.report table th
+ @include table-lines
 
 dl > dt
  margin-left: 10px
@@ -30,3 +39,8 @@ dl > dd
  color: red
  font-weight: bold
  font-size: 1.5em
+
+.stats
+ margin-top: 10px
+ margin-bottom: 15px
+ font-size: 0.8em

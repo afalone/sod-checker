@@ -1,1 +1,9 @@
-= @form.text_field @key, :class => "string field"
+- opts = {}
+- sz = @val["minlen"] || @val["maxlen"]
+- ms = @val["maxlen"]
+
+- klass = %w(string field)
+- klass += ["mandatory"] if @val["mandatory"]
+- opts.merge! :size => sz if sz
+- opts.merge! :maxlength => ms if ms
+= @form.text_field @key, {:class => klass.join(' ')}.merge(opts)

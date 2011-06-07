@@ -5,6 +5,7 @@ class RequestBooleanCell < Cell::Rails
    @key = args[:key]
    @val = args[:val]
    @fields = args[:fields]
+   @data = args[:data]
    render
   end
 

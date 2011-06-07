@@ -1,16 +1,23 @@
-= @form.fields_for "#{@key}[]", @data do |f|
+= @form.fields_for @key, @data, :index => nil do |f|
  %table
   %tr
    - @val.each_key do |k|
-    %th #{@val[k]["title"]} (#{k})
-  - (@data || []).each do |data|
+    %th 
+     = "#{@val[k]["title"] || k}"
+     %span.code #{k}
+     %span.description #{@val[k]["description"]}
+   %th= link_to "add", "#", :class => "add_row", :id => "#{@key}_js_id"
+  - puts "data array #{@key}"
+  - p @data
+  - (@data || []).compact.each do |data|
    %tr
-    %td
-     = render_cell :"request_params", :display_row, :form => f, :config => @val, :input => @val, :data => data #.try(@key)
-  %tr
-   = render_cell :"request_params", :display_row, :form => f, :config => @val, :input => @val, :data => OpenStruct.new(@val.inject({}){|r, a| r.merge(a[0] => nil)  }) #data.try(@key)
--#  - @input.each do |row|
--#   %tr
--#    - @val["content"].each_key do |k|
--#     %td
--#      = row[k]
+    = render_cell "request_params", :display_row, :form => f, :config => @val, :input => @val, :data => data
+ - @new_line = render_cell :request_array, :display_new, :form => f, :config => @val, :input => @val
+:javascript
+ $(document).ready(function(){
+  $(".add_row##{@key}_js_id").click(function(){
+   var table_item = $(this).parents("table tr");
+   $("#{@new_line.gsub("\n", "").gsub("\"", "\\\"")}").insertAfter($(table_item));
+   return false;
+  });
+ });

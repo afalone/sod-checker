@@ -4,20 +4,29 @@
 = form_for :query, :url => root_path, :html=>{:method => :get} do |f|
  .request
   = f.label :what, "Запрос"
-  = f.select :what, @config["methods"].map{|arr| ["#{(arr[1]["title"] || arr[1]["description"])} (#{arr[0]})", arr[0]] }
+  = f.select :what, @config["methods"].map{|arr| [["#{arr[1]["title"]}", "(#{arr[0]})"].join(' '), arr[0]] }.sort_by{|i| i[1] }
   = f.submit "Задать параметры", :name => "setup"
  .rparams
   - if @query && !@query.what.blank?
    = render "query_params", :query => @query, :config => @config, :form => f
 .report
  - if @report
+  .stats{:title=>"статистика"}
+   %div Время генерации отчета: #{(@r_time * 100.0).round / 100.0 }ms
+   %div Время загрузки config-файла: #{(@c_time * 100.0).round / 100.0}ms
   = render_cell :report, :display, :data => @report, :config => @config["methods"][@query.what]["output"], :enums => @config["enums"]
   %a#toggle_raw{:href=>"#"} Показать неформатированный ответ сервера
   %pre#raw
    = @report.to_yaml
+- if @request
+ %a#toggle_request{:href=>"#"} Показать запрос
+ %pre#raw_request
+  = @request
 :javascript
  $(document).ready(function(){
   $("select#query_what").change(function(){ $(".rparams").hide(); });
   $("#raw").hide();
+  $("#raw_request").hide();
   $("#toggle_raw").click( function(){ $("#raw").toggle(); return false; });
+  $("#toggle_request").click( function(){ $("#raw_request").toggle(); return false; });
  });

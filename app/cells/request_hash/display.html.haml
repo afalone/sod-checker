@@ -1,12 +1,10 @@
 = @form.fields_for @key do |f|
  %dl
-  -# @val["content"].each_key do |k|
+  - puts "hashdata"
+  - p @data
+  - @data ||= OpenStruct.new
   - @val.each_pair do |k, v|
    %dt #{v["title"]} (#{k})
-   %dd= render_cell :"request_#{v["type"] || "string"}", :display, :form => f, :config => v, :input => v
--#  - @input.each do |row|
--#   %tr
--#    - @val["content"].each_key do |k|
--#     %td
--#      = row[k]
+   - @data.try("#{k}=", v["default"]) if v["default"] && @data.try(k).nil?
+   %dd= render_cell :"request_#{v["type"] || "string"}", :display, :form => f, :config => v, :input => v, :key => k, :val => v, :data => (@data.try(k))
 

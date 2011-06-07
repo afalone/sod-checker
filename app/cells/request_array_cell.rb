@@ -6,7 +6,15 @@ class RequestArrayCell < Cell::Rails
    @val = args[:val].try(:"[]", "content")
    @input = args[:input] || {}
    @data = args[:data]
-   #@input = input["content"] || {}
+   render
+  end
+
+  def display_new(args)
+   @key = args[:key]
+   @form = args[:form]
+   @val = args[:val].try(:"[]", "content")
+   @input = args[:input] || {}
+   #@data = args[:data]
    render
   end
 

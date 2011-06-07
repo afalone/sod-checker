@@ -3,7 +3,13 @@
  = @form.fields_for :fields, @data do |form|
   = form.hidden_field "_request_method"
   - @input.each_pair do |key, val|
+   - lable = capture do
+    #{val["title"] || key}
+    %span.code= key
+    %span.description= val["description"]
    .form_line
-    = form.label key, "#{val["title"] || val["description"]} (#{key})"
+    = form.label key, lable
+    - @data.try("#{key}=", mk_struct(self.controller.try("data_#{val["type"] || "string"}")))
+    - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
     = render_cell :"request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key)
   = form.submit "отправить запрос"
