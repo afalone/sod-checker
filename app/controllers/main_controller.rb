@@ -5,12 +5,13 @@ class MainController < ApplicationController
 
   def index
    puts "config load time: #{@c_time}"
-   @request = @data.to_yaml if @data
+   
+   #@request = @data.to_yaml if @data
+   @request = from_as_to_hash(params["query"].try(:[], "fields") || {}).to_yaml(:ExplicitTypes => true, :UseHeader=>false)
+   @structure = @config["methods"][@query.what]
    if params["commit"] && @query.what == @data._request_method
     begin
      @r_time = Benchmark.ms do
-      puts "query"
-      p params["query"]["fields"]
       @report = AxaptaRequest.try(@query.what, params["query"]["fields"])
      end
      puts "report generate time: #{@r_time}"
@@ -18,9 +19,6 @@ class MainController < ApplicationController
      puts "errorable req #{e.inspect}"
      flash[:error] = e.inspect
     end
-    puts "report"
-    p @report
-    #puts mk_struct(@report.class)
    end
   end
 
@@ -39,7 +37,7 @@ class MainController < ApplicationController
 
   def get_query
    #@query = OpenStruct.new(params["query"] || {:what => ''})
-   @query = mk_struct(params["query"])
+   @query = mk_struct(params["query"]) || OpenStruct.new
   end
 
   def get_fields

@@ -1,4 +1,4 @@
-#{@config["title"]}
+%span.label #{@config["title"] || @key}
 %dl
  - @config["content"].delete_if{|k, v| k == "title" }.each_pair do |key, val|
   %dt

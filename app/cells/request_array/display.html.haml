@@ -1,21 +1,26 @@
-= @form.fields_for "#{@key}[]", @data, :index => nil do |f|
- %table
+-#= @form.fields_for @key, @data, :index => nil do |f|
+%table
+ %tr
+  - @val.each_key do |k|
+   %th 
+    = "#{@val[k]["title"] || k}"
+    %span.code #{k}
+    %span.description #{@val[k]["description"]}
+  %th= link_to "add", "#", :class => "add_row", :id => "#{@key}_js_id"
+ - (@data || []).compact.each do |data|
   %tr
-   - @val.each_key do |k|
-    %th 
-     = "#{@val[k]["title"] || k}"
-     %span.code #{k}
-     %span.description #{@val[k]["description"]}
-   %th= link_to "add", "#", :class => "add_row", :id => "#{@key}_js_id"
-  - (@data || []).compact.each do |data|
-   %tr
+   = @form.fields_for "#{@key}[]", data, :index => nil do |f|
     = render_cell "request_params", :display_row, :form => f, :config => @val, :input => @val, :data => data
- - @new_line = render_cell :request_array, :display_new, :form => f, :config => @val, :input => @val
+ - @new_line = render_cell :request_array, :display_new, :form => @form, :key => @key, :config => @val, :input => @val
 :javascript
  $(document).ready(function(){
   $(".add_row##{@key}_js_id").click(function(){
    var table_item = $(this).parents("table tr");
    $("#{@new_line.gsub("\n", "").gsub("\"", "\\\"")}").insertAfter($(table_item));
+   $(this).parents("table").find("tr td a.rm_row").click(function(){
+    $(this).parents("table tr").remove();
+    return false;
+   });
    return false;
   });
  });

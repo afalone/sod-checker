@@ -1,4 +1,4 @@
-#{@config["title"]}
+%span.label #{@config["title"] || @key}
 %table
  %tr
   - @columns.each do |column|

@@ -39,6 +39,7 @@ gem "jquery-rails"
 gem "client_side_validations"
 gem "cells"
 gem "rspec-cells"
+gem "ya2yaml"
 
 group :development, :test do
  gem "rspec"

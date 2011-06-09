@@ -1,4 +1,4 @@
 %div
- #{@config["title"]}
- %span
-  #{@data} (#{@enums[@config["type"]][@data]})
+ %span.label
+  #{@config["title"] ||@key }
+ #{@data} (#{@enums[@config["type"]][@data]})

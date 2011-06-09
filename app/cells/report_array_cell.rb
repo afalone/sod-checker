@@ -2,6 +2,7 @@ class ReportArrayCell < Cell::Rails
 
   def display(args)
    parameters(args)
+   @key = args[:key]
    @columns = @config["content"].keys
    render
   end

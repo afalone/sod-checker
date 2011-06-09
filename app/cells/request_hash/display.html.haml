@@ -1,7 +1,5 @@
 = @form.fields_for @key, @data do |f|
  %dl
-  - puts "hashdata"
-  - p @data
   - @data ||= OpenStruct.new
   - @val.each_pair do |k, v|
    %dt #{v["title"]} (#{k})

@@ -7,9 +7,7 @@
   = f.select :what, @config["methods"].map{|arr| [["#{arr[1]["title"]}", "(#{arr[0]})"].join(' '), arr[0]] }.sort_by{|i| i[1] }
   = f.submit "Задать параметры", :name => "setup"
  .rparams
-  - if @query && !@query.what.blank?
-   - puts "main data"
-   - p @data
+  - if @query && !@query.try(:what).blank?
    = render "query_params", :query => @query, :config => @config, :form => f, :data => @data
 .report
  - if @report
@@ -19,16 +17,26 @@
   = render_cell :report, :display, :data => @report, :config => @config["methods"][@query.what]["output"], :enums => @config["enums"]
   %a#toggle_raw{:href=>"#"} Показать неформатированный ответ сервера
   %pre#raw
-   = @report.to_yaml
+   = @report.ya2yaml
 - if @request
  %a#toggle_request{:href=>"#"} Показать запрос
  %pre#raw_request
   = @request
+ %a#toggle_structure{:href=>"#"} Показать структуру запроса
+ %pre#raw_structure
+  = @structure.ya2yaml #, :Encoding=>:Utf8, :UseBlock=>true)
 :javascript
  $(document).ready(function(){
   $("select#query_what").change(function(){ $(".rparams").hide(); });
   $("#raw").hide();
   $("#raw_request").hide();
+  $("#raw_structure").hide();
   $("#toggle_raw").click( function(){ $("#raw").toggle(); return false; });
   $("#toggle_request").click( function(){ $("#raw_request").toggle(); return false; });
+  $("#toggle_structure").click( function(){ $("#raw_structure").toggle(); return false; });
+  $("a.rm_row").click(function(){
+   $(this).parents("table tr").remove();
+   return false;
+  });
  });
+

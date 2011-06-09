@@ -1,3 +1,5 @@
 - @input.each_pair do |key, val|
  %td
   = render_cell :"request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => @form, :input => @input[key], :data => @data.try(key)
+%td= link_to "del", "#", :class => "rm_row"
+

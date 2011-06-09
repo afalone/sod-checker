@@ -2,6 +2,7 @@ class ReportEnumCell < Cell::Rails
 
   def display(args)
    parameters args
+   @key = args[:key]
    render
   end
 
