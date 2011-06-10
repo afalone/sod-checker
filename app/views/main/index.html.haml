@@ -1,6 +1,7 @@
-- unless flash[:error].blank?
- .error_message
-  = flash[:error]
+- flash.each do |name, msg|
+ = content_tag :div, msg, :id => "#{name}_message"
+-#.error_message
+ = flash[:error]
 = form_for :query, :url => root_path, :html=>{:method => :get} do |f|
  .request
   = f.label :what, "Запрос"

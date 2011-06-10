@@ -5,8 +5,9 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "rake", "0.8.7"
-gem 'pg'
+#gem "rake", "0.8.7"
+gem "rake"
+#gem 'pg'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -40,6 +41,7 @@ gem "client_side_validations"
 gem "cells"
 gem "rspec-cells"
 gem "ya2yaml"
+gem "newrelic_rpm"
 
 group :development, :test do
  gem "rspec"
