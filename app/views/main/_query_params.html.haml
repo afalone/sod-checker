@@ -1,2 +1,3 @@
+- puts "render _query_params"
 = render_cell :request_params, :display, :method => query.try(:what), :config => config, :input => config["methods"][query.try(:what)]["input"], :form => form, :data => data
 

@@ -1,7 +1,5 @@
 - flash.each do |name, msg|
  = content_tag :div, msg, :id => "#{name}_message"
--#.error_message
- = flash[:error]
 = form_for :query, :url => root_path, :html=>{:method => :get} do |f|
  .request
   = f.label :what, "Запрос"
@@ -9,7 +7,8 @@
   = f.submit "Задать параметры", :name => "setup"
  .rparams
   - if @query && !@query.try(:what).blank?
-   = render "query_params", :query => @query, :config => @config, :form => f, :data => @data
+   - puts "index prequery_params"
+   = render_cell :request_params, :display, :method => @query.try(:what), :config => @config, :input => @config["methods"][@query.try(:what)]["input"], :form => f, :data => @data
 .report
  - if @report
   .stats{:title=>"статистика"}

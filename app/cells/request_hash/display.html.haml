@@ -1,6 +1,6 @@
 = @form.fields_for @key, @data do |f|
  %dl
-  - @data ||= OpenStruct.new
+  - @data# ||= OpenStruct.new
   - @val.each_pair do |k, v|
    %dt #{v["title"]} (#{k})
    - @data.try("#{k}=", v["default"]) if v["default"] && @data.try(k).nil?

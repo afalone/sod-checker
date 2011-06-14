@@ -1,15 +1,16 @@
+- puts "render_c request_params"
 = @method
 .select
  = @form.fields_for :fields, @data do |form|
+  - p "---data", @data
+  - puts "request_params @form"
+  - puts "request_params input #{@input.keys.join(', ')}"
   = form.hidden_field "_request_method"
   - @input.each_pair do |key, val|
-   - lable = capture do
-    #{val["title"] || key}
-    %span.code= key
-    %span.description= val["description"]
    .form_line
-    = form.label key, lable
+    - puts "request_params @form @input #{key}"
+    = form.label key, render_cell(:request_params, :label, :val=>val, :key=>key)
     - @data.try("#{key}=", mk_struct(try("data_#{val["type"] || "string"}", @data.try(key))))
     - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
-    = render_cell :"request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key)
+    = render_cell("request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key))
   = form.submit "отправить запрос"

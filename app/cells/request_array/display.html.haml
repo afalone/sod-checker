@@ -16,7 +16,7 @@
  $(document).ready(function(){
   $(".add_row##{@key}_js_id").click(function(){
    var table_item = $(this).parents("table tr");
-   $("#{@new_line.gsub("\n", "").gsub("\"", "\\\"")}").insertAfter($(table_item));
+   $("#{(render_cell :request_array, :display_new, :form => @form, :key => @key, :config => @val, :input => @val).gsub("\n", "").gsub("\"", "\\\"")}").insertAfter($(table_item));
    $(this).parents("table").find("tr td a.rm_row").click(function(){
     $(this).parents("table tr").remove();
     return false;
