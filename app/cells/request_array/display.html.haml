@@ -9,7 +9,7 @@
   %th= link_to "add", "#", :class => "add_row", :id => "#{@key}_js_id"
  - (@data || []).compact.each do |data|
   %tr
-   = @form.fields_for "#{@key}[]", data, :index => nil do |f|
+   - @form.fields_for "#{@key}[]", data, :index => nil do |f|
     = render_cell "request_params", :display_row, :form => f, :config => @val, :input => @val, :data => data
  - @new_line = render_cell :request_array, :display_new, :form => @form, :key => @key, :config => @val, :input => @val
 :javascript

@@ -1,7 +1,7 @@
 - puts "render_c request_params"
 = @method
 .select
- = @form.fields_for :fields, @data do |form|
+ - @form.fields_for :fields, @data do |form|
   - p "---data", @data
   - puts "request_params @form"
   - puts "request_params input #{@input.keys.join(', ')}"

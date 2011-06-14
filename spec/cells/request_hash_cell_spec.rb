@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ActionView::Helpers::FormHelper
 
 describe RequestHashCell do
 
@@ -20,8 +21,9 @@ describe RequestHashCell do
     context "rendering display" do
       before do
        @config = {"title" => 'title chk', "type" => "real"}
+       
       end
-      subject { render_cell(:request_hash, :display, :key => @key, :data => @data, :config => @config) }
+      subject { form_for :fields do |f| render_cell(:request_hash, :display, :form => f, :key => @key, :data => @data, :config => @config) end }
 
       it { should have_selector("div", :content => "1.9") }
       it { should have_selector("span.label", :content => "title chk") }

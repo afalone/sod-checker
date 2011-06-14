@@ -1,10 +1,10 @@
 class RequestParamsCell < Cell::Rails
 
  #cache :display, :expires_in => 0.seconds
- cache false
- cache :label, :expires_in => 0.seconds
- cache :display_new, :expires_in => 0.seconds
- cache :display_row, :expires_in => 0.seconds
+# cache false
+# cache :label, :expires_in => 0.seconds
+# cache :display_new, :expires_in => 0.seconds
+# cache :display_row, :expires_in => 0.seconds
 
 # cache :display do |cell, options|
 #  Digest::MD5.hexdigest(options.keys.map(&:to_s).sort.map{|i| [i, options[i]].join(':') }.join(','))

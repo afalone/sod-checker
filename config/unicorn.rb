@@ -1,5 +1,5 @@
 #setup user environment
-ENV['RAILS_ENV'] = 'development'
+ENV['RAILS_ENV'] = 'production'
 worker_processes(1)
 preload_app true
 user('afa','wheel')
