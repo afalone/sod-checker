@@ -2,7 +2,7 @@
 %table
  %tr
   - @columns.each do |column|
-   %th #{@config["content"][column]["title"]} (#{column})
+   %th #{@config.try(:[], "content").try(:[], column).try(:[], "title")} (#{column})
  - @data.each do |data_row|
   %tr
    = render_cell :report_array, :display_row, :order => @columns, :row => data_row, :config => @config["content"], :enums => @enums

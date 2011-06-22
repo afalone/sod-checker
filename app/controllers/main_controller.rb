@@ -31,7 +31,8 @@ class MainController < ApplicationController
  protected
   def get_config
    @c_time = Benchmark.ms do
-    @config = File.open('config/ax.yaml'){|f| YAML.load(f)}
+    #@config = File.open('config/ax.yaml'){|f| YAML.load(f)}
+    @config = Axapta.new.config
    end
   end
 
