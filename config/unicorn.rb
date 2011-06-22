@@ -1,15 +1,16 @@
 #setup user environment
 ENV['RAILS_ENV'] = 'production'
-worker_processes(1)
+prefix = "/mnt/data/www/sod-checker"
+worker_processes(3)
 preload_app true
-user('afa','wheel')
+user('www','devel')
 timeout 40
-listen '0.0.0.0:3000'
+listen "/tmp/unicorn_sod_checker.sock"
 #listen '/var/sockets/cup-of.cup-of.sock'
-working_directory '/home/afa/rails/sod-checker'
-pid '/home/afa/rails/sod-checker/tmp/pids/unicorn.pid'
-stderr_path "/home/afa/rails/sod-checker/log/unicorn.stderr.log"
-stdout_path "/home/afa/rails/sod-checker/log/unicorn.stdout.log"
+working_directory "#{prefix}"
+pid "#{prefix}/tmp/pids/unicorn.pid"
+stderr_path "#{prefix}/log/unicorn.stderr.log"
+stdout_path "#{prefix}/log/unicorn.stdout.log"
 
 GC.respond_to?(:copy_on_write_friendly=) and
 GC.copy_on_write_friendly = true
