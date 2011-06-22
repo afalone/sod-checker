@@ -8,7 +8,7 @@ class MainController < ApplicationController
    
    #@request = @data.to_yaml if @data
    @request = from_as_to_hash(params["query"].try(:[], "fields") || {}).to_yaml(:ExplicitTypes => true, :UseHeader=>false)
-   @structure = @config["methods"][@query.what]
+   @structure = @axapta.method(@query.what)
    if params["commit"] && @query.what == @data._request_method
     begin
      @r_time = Benchmark.ms do
@@ -31,8 +31,8 @@ class MainController < ApplicationController
  protected
   def get_config
    @c_time = Benchmark.ms do
-    #@config = File.open('config/ax.yaml'){|f| YAML.load(f)}
-    @config = Axapta.new.config
+    @axapta = Axapta.new
+    @config = @axapta.config
    end
   end
 
