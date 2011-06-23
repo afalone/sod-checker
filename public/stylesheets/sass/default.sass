@@ -1,31 +1,103 @@
-.form_line label
- font-weight: bold
+body, table, input
+ font-size: 10pt
+ font-family: sans-serif
 
 .form_line
- margin-left: 25px
+ padding: 4px
+ border-bottom: 2px solid #ddd
+ position: relative
+
+
+.form_line:frst-of-type
+    border-bottom: none
+
+.form_line label {
+    width: 250px;
+    display: inline-block;
+    position: relative;
+    text-align: right;
+    vertical-align: top;
+    padding-right: 5px;
+}
+
+.form_line label .description {
+    width: 250px;
+    display: block;
+    text-align: right;
+    font-size: 75%;
+    color: #666;
+    overflow: show;
+
+.form_line label .code
+    display: none
+    z-index: 42
+
+
+.form_line label:hover .code
+    display: block
+    position: absolute
+    left: 254px
+    top: 0px
+    border: 1px solid #666
+    padding: 2px 4px
+    background-color: #FFD
+    text-align: left
+    font-weight: normal
+
 
 .form_line > table
- margin-left: 25px
- #border-collapse: separate
- #border-spacing: 2px
- #border-color: gray
-
-@mixin table-lines
- border: 1px solid gray
  border-collapse: collapse
- 
 
-.form_line > table td
- @include table-lines
+.form_line > table td, .form_line > table th
+ border: 1px solid gray
+
 
 .form_line > table th
- @include table-lines
+ background: #ddd
+ font-weight: bold
 
-.report table td
- @include table-lines
+
+.form_line > table td span.description, .form_line > table th span.description
+ display: none
+
+
+.form_line > table td span.code, .form_line > table th span.code
+ display: none
+
+.form_line > table td:hover span.description, .form_line > table th:hover span.description
+ display: block
+ text-align: right
+ font-size: 75%
+ color: #666
+ position: absolute
+ border: 1px solid #666
+ padding: 2px 4px
+ background-color: #FFD
+
+
+.form_line table td input[type=text]
+ min-width: 20px
+
+.report table
+ border-collapse: collapse
+
 
 .report table th
- @include table-lines
+ background-color: #ddd
+ font-weight: bold
+
+
+.report table td, .report table th
+ border: 1px solid gray
+ border-collapse: collapse
+ padding: 0px 4px
+
+
+.report .label
+ font-weight: bold
+
+.report .label:after
+ content: ": "
 
 dl > dt
  margin-left: 10px
