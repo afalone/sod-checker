@@ -16,7 +16,7 @@ describe RequestArrayCell do
   context "cell instance" do 
     subject { cell(:request_array) } 
     
-      it { should respond_to(:display) }
+    it { should respond_to(:display) }
     
   end
 end
