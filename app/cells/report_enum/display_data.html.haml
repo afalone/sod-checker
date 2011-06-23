@@ -1,2 +1,3 @@
 - p "enum cfg #{@enums[@config["type"]].class.name}"
+- p "enum data #{@enums[@config["type"]][0]}"
 #{@data} (#{@enums[@config["type"]].try(:[], @data)})
