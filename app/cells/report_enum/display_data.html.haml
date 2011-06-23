@@ -1,3 +1,6 @@
-- p "enum cfg #{@enums[@config["type"]].class.name}"
-- p "enum data #{@enums[@config["type"]][1]}"
-#{@data} (#{@enums[@config["type"]].try(:[], @data)})
+- if @enums[@config["type"]].is_a? Hash
+ #{@data} (#{@enums[@config["type"]].try(:[], @data)})
+- elsif @enums[@config["type"]].is_a? Array
+ #{@data} ! (#{@enums[@config["type"]].index(@data)})
+- else
+ #{@data} !!
