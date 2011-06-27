@@ -4,7 +4,7 @@ prefix = "/mnt/data/www/sod-checker"
 worker_processes(3)
 preload_app true
 user('www','devel')
-timeout 40
+timeout 300
 listen "/tmp/unicorn_sod_checker.sock"
 #listen '/var/sockets/cup-of.cup-of.sock'
 working_directory "#{prefix}"
