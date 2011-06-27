@@ -1,0 +1,2 @@
+#! /usr/local/bin/zsh
+kill `cat /mnt/data/www/sod-checker/tmp/pids/unicorn.pid`
