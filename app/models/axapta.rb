@@ -1,11 +1,12 @@
 class Axapta
  include ActiveModel
  include ActiveModel::Serialization
- def attributes
-  @attributes ||= {}
- end
- attr_accessor :config
- attr_accessor :method
+ extend ActiveModel::Naming
+# def attributes
+#  @attributes ||= {}
+# end
+# attr_accessor :config
+# attr_accessor :method
 
   def config
    @config ||= AxaptaRequest.describe_methods

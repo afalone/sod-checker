@@ -4,11 +4,12 @@ class MainController < ApplicationController
  before_filter :get_fields
 
   def index
+
    puts "config load time: #{@c_time}"
    
    #@request = @data.to_yaml if @data
    @request = from_as_to_hash(params["query"].try(:[], "fields") || {}).to_yaml(:ExplicitTypes => true, :UseHeader=>false)
-   @structure = @axapta.method(@query.what)
+   @structure = axapta.method(@query.what)
    if params["commit"] && @query.what == @data._request_method
     begin
      @r_time = Benchmark.ms do
@@ -28,14 +29,15 @@ class MainController < ApplicationController
   def show
   end
 
- protected
-  def get_config
+  def config
    @c_time = Benchmark.ms do
-    @axapta = Axapta.new
-    @config = @axapta.config
+    @config ||= axapta.config
    end
   end
-
+ protected
+  def get_config
+   config
+  end
   def get_query
    #@query = OpenStruct.new(params["query"] || {:what => ''})
    @query = mk_struct(params["query"]) || OpenStruct.new
@@ -45,6 +47,10 @@ class MainController < ApplicationController
    @query.fields = OpenStruct.new("_request_method" => @query.what) if params["setup"]
    @query.fields ||= OpenStruct.new("_request_method" => @query.what) if @query
    @data = @query.fields if @query
+  end
+
+  def axapta
+   @axapta ||= Axapta.new
   end
 
 end

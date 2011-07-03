@@ -50,6 +50,7 @@ group :development, :test do
  gem "rspec-rails"
  gem "cucumber"
  gem "cucumber-rails"
- gem "factory_girl"
+ gem "factory_girl",  ">=2.0.0.rc1"
+ gem "factory_girl_rails", ">=1.1.rc1"
  gem "database_cleaner"
 end
