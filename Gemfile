@@ -7,7 +7,7 @@ gem 'rails', '3.0.8'
 
 #gem "rake", "0.8.7"
 gem "rake"
-#gem 'pg'
+gem 'pg'
 
 # Use unicorn as the web server
 # gem 'unicorn'

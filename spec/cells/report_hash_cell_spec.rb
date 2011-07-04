@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ReportHashCell do
   context "cell rendering" do 
+    let(:enums) { {  }  }
     
     context "rendering display" do
       subject { render_cell(:report_hash, :display) }
@@ -28,4 +29,5 @@ describe ReportHashCell do
       it { should respond_to(:display_data) }
     
   end
+ pending "need more tests"
 end
