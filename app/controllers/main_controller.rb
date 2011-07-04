@@ -5,11 +5,11 @@ class MainController < ApplicationController
 
   def index
 
-   puts "config load time: #{@c_time}"
+   #puts "config load time: #{@c_time}"
    
    #@request = @data.to_yaml if @data
    @request = from_as_to_hash(params["query"].try(:[], "fields") || {}).to_yaml(:ExplicitTypes => true, :UseHeader=>false)
-   @structure = axapta.method(@query.what)
+   @structure = axapta.method(@query.what) unless @query.what.blank?
    if params["commit"] && @query.what == @data._request_method
     begin
      @r_time = Benchmark.ms do

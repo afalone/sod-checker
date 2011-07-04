@@ -3,17 +3,10 @@ require 'spec_helper'
 describe MainController do
 
   describe "GET 'index'" do
-#   before do
-    #mock_model(AxaptaRequest).stub(:describe_methods).and_return({"enums"=>{}, "methods"=>{"user_info"=>{}}})
-    
-    #@axapta = Factory(:axapta)
- #  end
    it "should be successful" do
     st = {"enums"=>{}, "methods"=>{"user_info"=>{}}}
-    #Axapta.stub_chain(:new, :config).and_return(st)
-    Axapta.any_instance.stubs(:config).returns(st)
-    #a = Axapta.new.config
-    #p a
+    AxaptaRequest.stubs(:describe_methods).returns(st)
+    #Axapta.any_instance.stubs(:config).returns(st)
     get 'index'
     response.should be_success
    end
