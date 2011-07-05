@@ -14,7 +14,16 @@
   .stats{:title=>"статистика"}
    %div Время генерации отчета: #{(@r_time * 100.0).round / 100.0 }ms
    %div Время загрузки config-файла: #{(@c_time * 100.0).round / 100.0}ms
-  = render_cell :report, :display, :data => @report, :config => @axapta.method(@query.what)["output"], :enums => @config["enums"]
+  - if @report[:error]
+   %table
+    %tr
+     %th Error type
+     %th Message
+    %tr
+     %td= @report["type"]
+     %td= @report["message"]
+  - else
+   = render_cell :report, :display, :data => @report, :config => @axapta.method(@query.what)["output"], :enums => @config["enums"]
   - if @request
    %a#toggle_request{:href=>"#"} Показать запрос
   %a#toggle_raw{:href=>"#"} Показать неформатированный ответ сервера
