@@ -9,7 +9,7 @@ class Axapta
 # attr_accessor :method
 
   def config
-   @config ||= AxaptaRequest.describe_methods
+   @config ||= AxaptaRequest.describe_methods("id"=>rand(10**6))
   end
 
   def method(key)

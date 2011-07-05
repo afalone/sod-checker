@@ -16,9 +16,14 @@ class MainController < ApplicationController
       @report = AxaptaRequest.try(@query.what, params["query"]["fields"])
      end
      puts "report generate time: #{@r_time}"
+    rescue JsonRpcClient::ServiceError => e
+     @r_time = Benchmark.ms do
+      e.message.scan(/JSON-RPC error.+\{\"type"=>(\d+), \"message\"=>\"(.+)\"\}/).each do |t,m|
+       @report = {"type" => t, "message" => m}
+      end
+     end
     rescue Exception => e
-     puts "errorable req #{e.inspect}"
-     flash[:error] = e.inspect
+     flash.now[:error] = e.to_s
     end
    end
   end
@@ -29,14 +34,14 @@ class MainController < ApplicationController
   def show
   end
 
-  def config
+  def configuration
    @c_time = Benchmark.ms do
     @config ||= axapta.config
    end
   end
  protected
   def get_config
-   config
+   configuration
   end
   def get_query
    #@query = OpenStruct.new(params["query"] || {:what => ''})
