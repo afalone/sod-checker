@@ -5,8 +5,6 @@ SodChecker::Application.configure do
   # test suite.  You never need to work with it otherwise.  Remember that
   # your test database is "scratch space" for the test suite and is wiped
   # and recreated between test runs.  Don't rely on the data there!
-  p config, config.class.name
-
   config.cache_classes = true
 
   # Log error messages when you accidentally call methods on nil.
