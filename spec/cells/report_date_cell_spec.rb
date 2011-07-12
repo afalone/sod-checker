@@ -2,21 +2,18 @@ require 'spec_helper'
 
 describe ReportDateCell do
   context "cell rendering" do 
-    
     context "rendering display" do
-      subject { render_cell(:report_date, :display) }
-  
-      it { should have_selector("h1", :content => "ReportDate#display") }
-      it { should have_selector("p", :content => "Find me in app/cells/report_date/display.html") }
+      subject { render_cell(:report_integer, :display, :enums => {"test"=>{"tst" => 1}}, :data => "1298", :config => {"title" => 'testInt', "type" => "integer"}, :key => "nameInteger") }
+
+      it { should have_xpath("//div/span[@class='label']", :text=>"testInt") }
+      it { should have_xpath("//div", :text=>"1298") }
     end
-    
+
     context "rendering display_data" do
-      subject { render_cell(:report_date, :display_data) }
-  
-      it { should have_selector("h1", :content => "ReportDate#display_data") }
-      it { should have_selector("p", :content => "Find me in app/cells/report_date/display_data.html") }
+      subject { render_cell(:report_integer, :display_data, :enums => {"test"=>{"tst" => 1}}, :data => "1298", :config => {"title" => 'testInt', "type" => "integer"}, :key => "nameInteger") }
+
+      it { should have_content("1298") }
     end
-    
   end
 
 
