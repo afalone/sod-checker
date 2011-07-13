@@ -53,4 +53,5 @@ group :development, :test do
  gem "factory_girl",  ">=2.0.0.rc1"
  gem "factory_girl_rails", ">=1.1.rc1"
  gem "database_cleaner"
+ gem "rcov"
 end
