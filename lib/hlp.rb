@@ -92,6 +92,9 @@ end
    val
   end
 
+  def data_date(val)
+   val
+  end
 module Enumerable
   def to_h
     self.inject({}) do |r, item|

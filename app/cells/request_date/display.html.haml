@@ -1,0 +1,10 @@
+- opts = {}
+-# sz = @val["maxlen"]
+-# sz = @val["minlen"] || @val["maxlen"]
+-# ms = @val["maxlen"]
+
+- klass = %w(date field)
+- klass += ["mandatory"] if @val["mandatory"]
+-# opts.merge! :size => sz if sz
+-# opts.merge! :maxlength => ms if ms
+= @form.text_field @key, {:class => klass.join(' ')}.merge(opts)
