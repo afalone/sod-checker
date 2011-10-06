@@ -92,7 +92,15 @@ end
    val
   end
 
+  def data_integer(val)
+   val
+  end
+
   def data_date(val)
+   val
+  end
+
+  def data_datetime(val)
    val
   end
 module Enumerable
