@@ -8,7 +8,7 @@
  .rparams
   - if @query && !@query.try(:what).blank?
    - puts "index prequery_params"
-   = render_cell :request_params, :display, :method => @query.try(:what), :config => @config, :input => @axapta.method(@query.try(:what))["input"], :form => f, :data => @data
+   = render_cell :request_params, :display, :method => @query.try(:what), :config => @config, :input => @axapta.method(@query.try(:what))["input"], :form => f, :data => @data, :enums => @config.try("enums")
 .report
  - if @report
   .stats{:title=>"статистика"}
