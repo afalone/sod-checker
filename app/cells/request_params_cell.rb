@@ -47,5 +47,6 @@ class RequestParamsCell < Cell::Rails
     @form = args[:form]
     @input = args[:input] || {}
     @data = args[:data]
+    @enums = args[:enums]
   end
 end
