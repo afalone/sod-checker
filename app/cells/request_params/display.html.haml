@@ -12,5 +12,5 @@
     = form.label key, render_cell(:request_params, :label, :val=>val, :key=>key)
     - @data.try("#{key}=", mk_struct(try("data_#{val["type"] || "string"}", @data.try(key))))
     - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
-    = render_cell("request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key))
+    = render_cell("request_#{(@enums.keys.include?(@config["type"]) ? "enum" : @config["type"] ) || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key), :enums => @enums)
   = form.submit "отправить запрос"
