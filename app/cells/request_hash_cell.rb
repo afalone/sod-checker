@@ -8,6 +8,7 @@ class RequestHashCell < Cell::Rails
    @val = args[:val].try(:"[]", "content")
    @input = args[:input] || {}
    @data = args[:data]# || OpenStruct.new
+   @enums = args[:enums]
    render
   end
 

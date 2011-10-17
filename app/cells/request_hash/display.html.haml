@@ -4,5 +4,5 @@
   - @val.each_pair do |k, v|
    %dt #{v["title"]} (#{k})
    - @data.try("#{k}=", v["default"]) if v["default"] && @data.try(k).nil?
-   %dd= render_cell :"request_#{v["type"] || "string"}", :display, :form => f, :config => v, :input => v, :key => k, :val => v, :data => (@data.try(k))
+   %dd= render_cell :"request_#{(@enums.keys.include?(@config["type"]) ? "enum" : v["type"] ) || "string"}", :display, :form => f, :config => v, :input => v, :key => k, :val => v, :data => (@data.try(k)), :enums => @enums
 
