@@ -27,14 +27,14 @@
   - if @request
    %a#toggle_request{:href=>"#"} Показать запрос
   %a#toggle_raw{:href=>"#"} Показать неформатированный ответ сервера
-  - if @request
-   %a#toggle_structure{:href=>"#"} Показать структуру запроса
+- if @structure
+ %a#toggle_structure{:href=>"#"} Показать структуру запроса
 - if @request
  %pre#raw_request
   = @request
  %pre#raw
   = @report.ya2yaml
-- if @request
+- if @structure
  %pre#raw_structure
   = @structure.ya2yaml #, :Encoding=>:Utf8, :UseBlock=>true)
 :javascript

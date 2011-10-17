@@ -52,6 +52,7 @@ class MainController < ApplicationController
    @query.fields = OpenStruct.new("_request_method" => @query.what) if params["setup"]
    @query.fields ||= OpenStruct.new("_request_method" => @query.what) if @query
    @data = @query.fields if @query
+   #@enums = @
   end
 
   def axapta
