@@ -9,7 +9,7 @@
   - @input.each_pair do |key, val|
    .form_line
     - puts "request_params @form @input #{key}"
-    = form.label key, render_cell(:request_params, :label, :val=>val, :key=>key)
+    = form.label key, render_cell(:request_params, :label, :val=>val, :key=>key, :enums => @enums)
     - @data.try("#{key}=", mk_struct(try("data_#{(@enums.keys.include?(@config["type"]) ? "enum" : @config["type"] ) || "string"}", @data.try(key))))
     - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
     = render_cell("request_#{(@enums.keys.include?(@config["type"]) ? "enum" : @config["type"] ) || "string"}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key), :enums => @enums)

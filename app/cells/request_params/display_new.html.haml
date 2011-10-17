@@ -1,5 +1,5 @@
 - @input.each_pair do |key, val|
  %td
   - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
-  = render_cell "request_#{val["type"] || "string"}", :display, :key => key, :val => val, :form => @form, :input => @input[key], :data => @data.try(key)
+  = render_cell "request_#{(@enums.keys.include?(val["type"]) ? "enum" : val["type"] ) || "string"}", :display, :key => key, :val => val, :form => @form, :input => @input[key], :data => @data.try(key), :enums => @enums
 %td= link_to "del", "#", :class => "rm_row"

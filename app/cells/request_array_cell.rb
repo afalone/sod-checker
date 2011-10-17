@@ -9,21 +9,23 @@ class RequestArrayCell < Cell::Rails
 # cache :display_new, :expires_in => 0.seconds
 
   def display(args)
-   @key = args[:key]
-   @form = args[:form]
-   @val = args[:val].try(:"[]", "content")
-   @input = args[:input] || {}
+   parameters args
    @data = args[:data]
    render
   end
 
   def display_new(args)
+   parameters args
+   #@data = args[:data]
+   render
+  end
+
+  def parameters(args)
    @key = args[:key]
    @form = args[:form]
    @val = args[:val].try(:"[]", "content")
    @input = args[:input] || {}
-   #@data = args[:data]
-   render
+   @enums = args[:enums]
   end
 
 end
