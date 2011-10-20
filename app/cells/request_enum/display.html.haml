@@ -1,4 +1,5 @@
-%h1
-  RequestEnum#display
-%p
-  Find me in app/cells/request_enum/display.html.haml
+- opts = {}
+- klass = %w(enum field)
+- klass += ["mandatory"] if @val["mandatory"]
+= @form.text_field @key, {:class => klass.join(' ')}.merge(opts)
+

@@ -1,7 +1,11 @@
 class RequestEnumCell < Cell::Rails
 
   def display
-    render
+   @form = args[:form]
+   @data = args[:data]
+   @key = args[:key]
+   @val = args[:val]
+   render
   end
 
 end
