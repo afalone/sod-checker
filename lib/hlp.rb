@@ -80,6 +80,10 @@ end
    val 
   end
 
+  def data_enum(val)
+   val 
+  end
+
   def data_string(val)
    val
   end
