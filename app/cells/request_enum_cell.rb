@@ -1,6 +1,6 @@
 class RequestEnumCell < Cell::Rails
 
-  def display
+  def display(args)
    @form = args[:form]
    @data = args[:data]
    @key = args[:key]
