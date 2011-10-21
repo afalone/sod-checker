@@ -1,6 +1,5 @@
 - opts = {}
 - klass = %w(enum field)
 - klass += ["mandatory"] if @val["mandatory"]
-= @form.text_field @key, {:class => klass.join(' ')}.merge(opts)
 = @form.select @key, @avails, {:class => klass.join(' ')}.merge(opts)
 
