@@ -1,6 +1,3 @@
-- puts '===bool'
-- p @key
-- p @data
 - nm = @form.check_box(@key, {:class => "boolean field"}).match(/<input.+?name="(.+?)"/i).try(:[], 1)
 = check_box_tag(nm, 1, @data ? true : false, :class => "boolean field") if nm
 
