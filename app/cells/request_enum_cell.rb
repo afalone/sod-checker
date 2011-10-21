@@ -6,9 +6,7 @@ class RequestEnumCell < Cell::Rails
    @key = args[:key]
    @val = args[:val]
    @enums = args[:enums]
-   puts "---enums"
-   p @enums
-   @avails = @enums
+   @avails = @enums.try(:[], @val["type"])
    render
   end
 
