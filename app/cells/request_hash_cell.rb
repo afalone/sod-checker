@@ -9,6 +9,7 @@ class RequestHashCell < Cell::Rails
    @input = args[:input] || {}
    @data = args[:data]# || OpenStruct.new
    @enums = args[:enums]
+   @config = args[:config]
    render
   end
 
