@@ -18,9 +18,12 @@ class MainController < ApplicationController
      puts "report generate time: #{@r_time}"
     rescue JsonRpcClient::ServiceError => e
      @r_time = Benchmark.ms do
-      e.message.scan(/JSON-RPC error.+\{\"type"=>(\d+), \"message\"=>\"(.+)\"\}/).each do |t,m|
-       @report = {"type" => t, "message" => m, :error => true}
+      e.message.scan(/JSON-RPC error.+\{.+\}/).each do |t|
+       @report = {"message" => t, :error => true}
       end
+      #e.message.scan(/JSON-RPC error.+\{\"type"=>(\d+), \"message\"=>\"(.+)\"\}/).each do |t,m|
+      # @report = {"type" => t, "message" => m, :error => true}
+      #end
      end
     rescue Exception => e
      flash.now[:error] = e.to_s

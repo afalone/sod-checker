@@ -20,7 +20,7 @@
      %th Error type
      %th Message
     %tr
-     %td= @report["type"]
+     %td= @report["type"] || ""
      %td= @report["message"]
   - else
    = render_cell :report, :display, :data => @report, :config => @axapta.method(@query.what)["output"], :enums => @config["enums"]
