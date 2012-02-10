@@ -19,7 +19,13 @@ class MainController < ApplicationController
     rescue JsonRpcClient::ServiceError => e
      @r_time = Benchmark.ms do
       e.message.scan(/JSON-RPC error.+\{.+\}/).each do |t|
-       @report = {"message" => t, :error => true}
+       @report = {:error => true}
+       t.scan(/\"type\"\b*?=>\b*?(\d+),/).each do |x|
+        @report.merge!("type" => x)
+       end
+       t.scan(/\"message\"\b*?=>\b*?\"(.+?)\"/).each do |x|
+        @report.merge!("message" => x)
+       end
       end
       #e.message.scan(/JSON-RPC error.+\{\"type"=>(\d+), \"message\"=>\"(.+)\"\}/).each do |t,m|
       # @report = {"type" => t, "message" => m, :error => true}
