@@ -1,3 +1,4 @@
+#encoding utf-8
 class RequestParamsCell < Cell::Rails
 
  #cache :display, :expires_in => 0.seconds
