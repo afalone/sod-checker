@@ -1,3 +1,3 @@
-- @form.fields_for "#{@key}[]", OpenStruct.new, :index => nil do |f|
+= @form.fields_for "#{@key}[]", OpenStruct.new, :index => nil do |f|
  %tr
   = render_cell :request_params, :display_new, :form=>f, :input => @input, :data => OpenStruct.new, :enums => @enums
