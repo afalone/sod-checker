@@ -3,7 +3,7 @@
 = form_for :query, :url => root_path, :html=>{:method => :get} do |f|
  .request
   = f.label :what, "Запрос"
-  = f.select :what, @axapta.methods.map{|m| [[@axapta.method(m).try(:[], "title"), m].compact.join(' '), m] }.sort_by{|i| i[1] }
+  = f.select :what, @axapta.methods.map{|m| [[m, @axapta.method(m).try(:[], "title")].compact.join(' '), m] }.sort_by{|i| i[1] }
   = f.submit "Задать параметры", :name => "setup"
  .rparams
   - if @query && !@query.try(:what).blank?
