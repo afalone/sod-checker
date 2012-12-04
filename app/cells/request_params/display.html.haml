@@ -4,7 +4,7 @@
   = form.hidden_field "_request_method"
   - @input.each_pair do |key, val|
    .form_line
-    = form.label key, render_cell(:request_params, :label, :val=>val, :key=>key, :enums => @enums)
+    = form.label key, render_cell(:request_params, :label, :val=>val, :key=>key, :enums => @enums), {:class => ["label", @enums.keys.include?(val["type"] || "string") ? "enum" : (val["type"] || "string" )]}
     - @data.try("#{key}=", mk_struct(try("data_#{(@enums.keys.include?(val["type"] || "string") ? "enum" : (val["type"] || "string") )}", @data.try(key))))
     - @data.try("#{key}=", val["default"]) if val["default"] and @data.try(key).nil?
     = render_cell("request_#{(@enums.keys.include?(val["type"] || "string") ? "enum" : (val["type"] || "string" ))}", :display, :key => key, :val => val, :form => form, :input => @input[key], :data => @data.try(key), :enums => @enums)
