@@ -1,4 +1,4 @@
 - nm = @form.check_box(@key, {:class => "boolean field"}).match(/<input.+?name="(.+?)"/i).try(:[], 1)
-= hidden_field_tag(nm, '0') if nm
+-# = hidden_field_tag(nm, '0', :class => "boolean field") if nm
 = check_box_tag(nm, 1, @data ? true : false, :class => "boolean field") if nm
 
