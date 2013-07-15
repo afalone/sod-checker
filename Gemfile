@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -53,6 +53,7 @@ group :development, :test do
  gem "factory_girl",  ">=2.0.0.rc1"
  gem "factory_girl_rails", ">=1.1.rc1"
  gem "database_cleaner"
+ gem "capybara"
  #gem "rcov"
  gem "simplecov"
 end

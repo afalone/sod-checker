@@ -8,6 +8,13 @@ describe ReportEnumCell do
   
       it { should have_xpath("//span[@class='label']", :text => "test") }
     end
+    context "userinfo error check" do
+     subject do
+      render_cell(:report_enum, :display, :enums => {"segment" => ["none", "development"], "segment_rus" => ["Не определен", "Разработка"]}, :data => "none", :config => {"title" => "tstenum", :type => "segment"})
+     end
+     it { should have_xpath("//span[@class='label']", :text => 'tstenum') }
+     it { should have_xpath("//div", :text => 'none') }
+    end
     
     context "rendering display_data" do
       # need fix -- for strange types of input enums. fix for hash, arr & simple str
